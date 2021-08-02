@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.Project.Domain.Common;
+using System;
 using System.Collections.Generic;
 
 namespace Org.Project.Domain.Entities
