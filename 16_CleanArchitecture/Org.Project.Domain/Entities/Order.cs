@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Org.Project.Domain.Common;
+using System;
 
 namespace Org.Project.Domain.Entities
 {
-    public class Order
+    public class Order : AuditableEntity
     {
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
