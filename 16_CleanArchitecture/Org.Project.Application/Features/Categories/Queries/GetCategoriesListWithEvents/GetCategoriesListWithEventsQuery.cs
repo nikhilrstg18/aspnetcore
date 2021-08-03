@@ -15,17 +15,17 @@ namespace Org.Project.Application.Features.Categories.Queries.GetCategoriesListW
 
         public class GetCategoriesListWithEventsQueryHandler : IRequestHandler<GetCategoriesListWithEventsQuery, List<CategoryEventListDto>>
         {
-            private readonly ICategoryRepository _categoryrepository;
+            private readonly ICategoryRepository _categoryRepository;
             private readonly IMapper _mapper;
 
-            public GetCategoriesListWithEventsQueryHandler(IMapper mapper, ICategoryRepository categoryrepository)
+            public GetCategoriesListWithEventsQueryHandler(IMapper mapper, ICategoryRepository categoryRepository)
             {
-                _categoryrepository = categoryrepository;
+                _categoryRepository = categoryRepository;
                 _mapper = mapper;
             }
             public async Task<List<CategoryEventListDto>> Handle(GetCategoriesListWithEventsQuery request, CancellationToken cancellationToken)
             {
-                var list = await _categoryrepository.GetCategoriesWithEvents(request.IncludeHistory);
+                var list = await _categoryRepository.GetCategoriesWithEvents(request.IncludeHistory);
 
                 return _mapper.Map<List<CategoryEventListDto>>(list);
             }
