@@ -45,7 +45,6 @@ namespace Org.Project.Application.Features.Categories.Commands.CreateCategory
                     var category = new Category { Name = request.Name };
                     category = await _categoryRepository.AddAsync(category);
                     createCategoryResponse.Category = _mapper.Map<CreateCategoryDto>(category);
-
                 }
 
                 return createCategoryResponse;

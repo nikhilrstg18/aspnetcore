@@ -36,9 +36,8 @@ namespace Org.Project.Application.Features.Events.Commands.CreateEvent
 
             public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
             {
-
                 //todo: use DI
-                var validator = new CreateEventCommandValidator();
+                var validator = new CreateEventCommandValidator(_eventRepository);
                 var validationResult = await validator.ValidateAsync(request);
 
                 if (validationResult.Errors.Count > 0)
