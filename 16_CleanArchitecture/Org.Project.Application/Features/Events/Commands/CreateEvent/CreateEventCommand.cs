@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Org.Project.Application.Contracts.Persistence;
+using Org.Project.Application.Exceptions;
 using Org.Project.Domain.Entities;
 using System;
 using System.Threading;
@@ -35,6 +36,14 @@ namespace Org.Project.Application.Features.Events.Commands.CreateEvent
 
             public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
             {
+
+                //todo: use DI
+                var validator = new CreateEventCommandValidator();
+                var validationResult = await validator.ValidateAsync(request);
+
+                if (validationResult.Errors.Count > 0)
+                    throw new ValidationException(validationResult);
+
                 var @event = _mapper.Map<Event>(request);
 
                 @event = await _eventRepository.AddAsync(@event);
