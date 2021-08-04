@@ -9,7 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Org.Project.Infrastructture.Mail
+namespace Org.Project.Infrastructure.Mail
 {
     public class EmailService :IEmailService
     {

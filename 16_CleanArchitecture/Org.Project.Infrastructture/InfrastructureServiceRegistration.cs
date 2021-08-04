@@ -2,12 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Org.Project.Application.Contracts.Infrastructure;
 using Org.Project.Application.Models.Mail;
-using Org.Project.Infrastructture.Mail;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Org.Project.Infrastructure.Mail;
 
-namespace Org.Project.Infrastructture
+namespace Org.Project.Infrastructure
 {
     public static class InfrastructureServiceRegistration
     {
