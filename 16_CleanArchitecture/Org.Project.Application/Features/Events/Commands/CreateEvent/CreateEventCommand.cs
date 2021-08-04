@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
+using Org.Project.Application.Contracts.Infrastructure;
 using Org.Project.Application.Contracts.Persistence;
 using Org.Project.Application.Exceptions;
+using Org.Project.Application.Models.Mail;
 using Org.Project.Domain.Entities;
 using System;
 using System.Threading;
@@ -27,11 +29,13 @@ namespace Org.Project.Application.Features.Events.Commands.CreateEvent
         {
             private readonly IMapper _mapper;
             private readonly IEventRepository _eventRepository;
+            private readonly IEmailService _emailService;
 
-            public CreateEventCommandHandler(IMapper mapper, IEventRepository eventRepository)
+            public CreateEventCommandHandler(IMapper mapper, IEventRepository eventRepository, IEmailService emailService)
             {
                 _mapper = mapper;
                 _eventRepository = eventRepository;
+                _emailService = emailService;
             }
 
             public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
@@ -46,6 +50,19 @@ namespace Org.Project.Application.Features.Events.Commands.CreateEvent
                 var @event = _mapper.Map<Event>(request);
 
                 @event = await _eventRepository.AddAsync(@event);
+
+                var email = new Email { To = "nikhilrstg18@gmail.com", Body = "A new event was created with id: " + @event.EventId, Subject = "A new event created" };
+
+                try
+                {
+                    await _emailService.SendEmail(email);
+                        
+                }
+                catch (Exception)
+                {
+                    //this shouldn't stop API and this can be logged
+                    //throw;
+                }
 
                 return @event.EventId;
             }
