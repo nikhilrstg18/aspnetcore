@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Org.Project.Application.Features.Categories.Commands.CreateCategory;
 using Org.Project.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using Org.Project.Application.Features.Categories.Queries.GetCategoryList;
 using Org.Project.Application.Features.Events.Commands.CreateEvent;
@@ -17,11 +18,12 @@ namespace Org.Project.Application.Profiles
             CreateMap<Event, EventListDto>().ReverseMap();
             CreateMap<Event, EventDetailDto>().ReverseMap();
             CreateMap<Event, EventExportDto>();
+            CreateMap<Event, CreateEventCommand>().ReverseMap();
+            CreateMap<Event, UpdateEventCommand>().ReverseMap();
             CreateMap<Category, CategoryDto>();
             CreateMap<Category, CategoryListDto>();
             CreateMap<Category, CategoryEventListDto>();
-            CreateMap<Event, CreateEventCommand>().ReverseMap();
-            CreateMap<Event, UpdateEventCommand>().ReverseMap();
+            CreateMap<Category, CreateCategoryDto>().ReverseMap();
         } 
     }
 }

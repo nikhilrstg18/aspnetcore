@@ -6,6 +6,7 @@ namespace Org.Project.Application.Responses
     {
         public BaseResponse()
         {
+            Success = true;
         }
 
         public BaseResponse(string message = null)
