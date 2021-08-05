@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Org.Project.Application.Contracts;
 using Org.Project.Domain.Common;
 using Org.Project.Domain.Entities;
 using System;
