@@ -6,6 +6,7 @@ using Org.Project.Application.Features.Events.Commands.DeleteEvent;
 using Org.Project.Application.Features.Events.Commands.UpdateEvent;
 using Org.Project.Application.Features.Events.Queries.GetEventDetail;
 using Org.Project.Application.Features.Events.Queries.GetEventList;
+using Org.Project.Application.Features.Events.Queries.GetEventsExport;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -71,5 +72,12 @@ namespace Org.Project.Api.Controllers
             return NoContent();
         }
 
+        [HttpGet("export", Name = nameof(ExportEvents))]
+        public async Task<ActionResult> ExportEvents()
+        {
+            var fileDto = await _mediator.Send(new GetEventsExportQuery());
+
+            return File(fileDto.Data, fileDto.ContentType, fileDto.Name);
+        }
     }
 }
