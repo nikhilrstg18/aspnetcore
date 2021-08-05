@@ -5,6 +5,7 @@ using Org.Project.Application.Features.Events.Commands.CreateEvent;
 using Org.Project.Application.Features.Events.Commands.UpdateEvent;
 using Org.Project.Application.Features.Events.Queries.GetEventDetail;
 using Org.Project.Application.Features.Events.Queries.GetEventList;
+using Org.Project.Application.Features.Events.Queries.GetEventsExport;
 using Org.Project.Domain.Entities;
 
 namespace Org.Project.Application.Profiles
@@ -15,6 +16,7 @@ namespace Org.Project.Application.Profiles
         {
             CreateMap<Event, EventListDto>().ReverseMap();
             CreateMap<Event, EventDetailDto>().ReverseMap();
+            CreateMap<Event, EventExportDto>();
             CreateMap<Category, CategoryDto>();
             CreateMap<Category, CategoryListDto>();
             CreateMap<Category, CategoryEventListDto>();

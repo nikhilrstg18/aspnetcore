@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Org.Project.Api.Filters;
 using Org.Project.Application.Features.Events.Commands.CreateEvent;
 using Org.Project.Application.Features.Events.Commands.DeleteEvent;
 using Org.Project.Application.Features.Events.Commands.UpdateEvent;
@@ -73,7 +74,8 @@ namespace Org.Project.Api.Controllers
         }
 
         [HttpGet("export", Name = nameof(ExportEvents))]
-        public async Task<ActionResult> ExportEvents()
+        [FileResultContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")]
+        public async Task<FileResult> ExportEvents()
         {
             var fileDto = await _mediator.Send(new GetEventsExportQuery());
 

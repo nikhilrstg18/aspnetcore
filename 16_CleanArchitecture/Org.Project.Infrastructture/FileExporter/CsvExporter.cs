@@ -14,7 +14,7 @@ namespace Org.Project.Infrastructure.FileExporter
             using var memoryStream = new MemoryStream();
             using var streamWriter = new StreamWriter(memoryStream);
             using var csvWriter = new CsvWriter(streamWriter, CultureInfo.InvariantCulture);
-            csvWriter.WriteRecord(eventExportDtos);
+            csvWriter.WriteRecords(eventExportDtos);
 
             return memoryStream.ToArray();
         }
